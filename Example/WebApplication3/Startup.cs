@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using AspNetCore.Until;
+using AspNetCore.Until.Proxy;
+using AspNetCore.Until.Proxy.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,6 +36,15 @@ namespace WebApplication3
         {
             services.AddMvc();
             services.AddTokenAction<TokenCheckStamp>();
+
+            services.AddeProxyUrl(builder =>
+            {
+                builder.Items.Add(new ProxyItem()
+                {
+                    SrcPath = "/Api/Cn/Informat",
+                    TargetPath = "http://localhost:5000/Zh/Informat"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +58,8 @@ namespace WebApplication3
             {
                 app.UseHsts();
             }
+
+            app.UseProxyUrl();
 
             app.UseMvc();
         }
