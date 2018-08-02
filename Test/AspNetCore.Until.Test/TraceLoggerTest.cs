@@ -24,13 +24,8 @@ namespace AspNetCore.Until.Test
 
             using (var services = serviceCollection.BuildServiceProvider())
             {
-                //var app = services.GetRequiredService<IApplicationBuilder>();
-                //app.ApplicationServices = services;
                 var app = new ApplicationBuilder(services);
                 app.UseTraceLogger();
-
-                //var LoggerFactory = services.GetRequiredService<LoggerFactoryTest>();
-                //LoggerFactory.Write("hello LoggerFactory");
 
                 var LoggerObject = services.GetRequiredService<LoggerObjectTest>();
                 LoggerObject.Write("hello Logger");
