@@ -6,7 +6,6 @@ namespace AspNetCore.Until.Test
 {
     public class TokenTest
     {
-        [Fact]
         public async void TokenControllerTest()
         {
             string url = "http://localhost:5000/api/Token";
@@ -39,7 +38,6 @@ namespace AspNetCore.Until.Test
             Assert.NotEqual("Check Token Not Success", successResult);
         }
 
-        [Fact]
         public async void TokenAttributeTest()
         {
             string url = "http://localhost:5000/api/Api";
